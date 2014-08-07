@@ -52,7 +52,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="EventLogCommanderTests.cs" />
+    <Compile Include="UnitTests\EventLogCommanderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +67,9 @@
       <Project>{17e18e94-ee29-40ba-ac1e-d12b3b889088}</Project>
       <Name>EventLogManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IntegrationTests\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
