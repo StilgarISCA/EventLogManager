@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using EventLogManager.Connection;
 using Telerik.JustMock;
+using Telerik.JustMock.Helpers;
 using Xunit;
 using EventLogManagerString = EventLogManager.ResponseString;
 
@@ -8,8 +9,8 @@ namespace EventLogManager.Test
 {
    public class EventLogCommanderTests
    {
-      private IEventLogConnection _eventLogConnection;
-      private EventLogCommander _eventLogCommander;
+      private readonly IEventLogConnection _eventLogConnection;
+      private readonly EventLogCommander _eventLogCommander;
 
       public EventLogCommanderTests()
       {
@@ -32,16 +33,31 @@ namespace EventLogManager.Test
       }
 
       [Fact]
+      public void HelpArgument_ReturnsUsageString()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string[] argumentArray = { "Help" };
+
+         // Act
+         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+
+         // Assert
+         Assert.Equal( EventLogManagerString.UseageStatement, returnValue );
+      }
+
+      [Fact]
       public void ListArgument_ReturnsListOfEventLogs()
       {
          // Arrange
          string returnValue = string.Empty;
          var simulatedEventLogs = new Collection<string>() { "SomeEventLog", "AnotherEventLog", "YetAnotherEventLog" };
+         string[] arguemntArray = { "List" };
 
          Mock.Arrange( () => _eventLogConnection.GetEventLogs() ).Returns( simulatedEventLogs );
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( new[] { "List" } );
+         returnValue = _eventLogCommander.ProcessCommand( arguemntArray  );
 
          // Assert
          foreach( var eventLog in simulatedEventLogs )

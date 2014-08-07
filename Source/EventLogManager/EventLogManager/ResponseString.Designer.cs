@@ -61,8 +61,11 @@ namespace EventLogManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage Event Logs and Event Sources.
-        ///List  List existing event logs on computer.
+        ///   Looks up a localized string similar to 
+        ///Manage Event Logs and Event Sources.
+        ///
+        ///Commands:
+        ///List - List existing event logs on computer.
         /// </summary>
         public static string UseageStatement {
             get {

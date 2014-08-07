@@ -26,11 +26,15 @@ namespace EventLogManager
          }
 
          string returnMessage = string.Empty;
-
          string command = args[0].ToUpperInvariant();
 
          switch( command )
          {
+            case "HELP":
+               {
+                  returnMessage = ResponseString.UseageStatement;
+                  break;
+               }
             case "LIST":
                {
                   Collection<string> eventLogs = _eventLogConnection.GetEventLogs();
