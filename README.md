@@ -13,3 +13,22 @@ The problem with logging to custom event logs and event log sources is that both
 This command line tool is designed to help facilitate the creation and management of these custom event logs.
 
 _This Project Is Not Complete_
+
+Commands
+===========
+**Help** -- List the help
+
+**List** -- Lists all of the event logs by name on the local machine
+
+*Example*
+
+    EventLogManager List
+
+*Output*
+
+    Application
+    HardwareEvents
+    Key Management Service
+    Security
+    System
+    
