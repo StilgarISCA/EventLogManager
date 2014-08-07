@@ -66,6 +66,21 @@ namespace EventLogManager.Test
          }
       }
 
+      [Fact]
+      public void ListWithEventLogName_DoesNotCallGetEventLogs()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         var simulatedEventLogs = new Collection<string>() { "SomeEventLog", "AnotherEventLog", "YetAnotherEventLog" };
+         string[] arguemntArray = { "List", "NameOfEventLog" };
 
+         Mock.Arrange( () => _eventLogConnection.GetEventLogs() ).Returns( simulatedEventLogs ).OccursNever();
+
+         // Act
+         returnValue = _eventLogCommander.ProcessCommand( arguemntArray );
+
+         // Assert
+        Mock.Assert( _eventLogConnection );
+      }
    }
 }
