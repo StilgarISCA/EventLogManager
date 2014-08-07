@@ -1,16 +1,15 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Resources;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "EventLogManager" )]
+[assembly: AssemblyTitle( "EventLogManager.Test" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "" )]
-[assembly: AssemblyProduct( "EventLogManager" )]
+[assembly: AssemblyProduct( "EventLogManager.Test" )]
 [assembly: AssemblyCopyright( "Copyright ©  2014" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
@@ -21,7 +20,7 @@ using System.Resources;
 [assembly: ComVisible( false )]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid( "d1bdb8c0-8c47-42c9-8c8e-7000ff397072" )]
+[assembly: Guid( "0cb7d3ef-ee2f-4e63-83f6-6602d5c25f01" )]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -35,6 +34,3 @@ using System.Resources;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion( "1.0.0.0" )]
 [assembly: AssemblyFileVersion( "1.0.0.0" )]
-
-[assembly: CLSCompliant( false )]
-[assembly: NeutralResourcesLanguageAttribute( "en-US" )]

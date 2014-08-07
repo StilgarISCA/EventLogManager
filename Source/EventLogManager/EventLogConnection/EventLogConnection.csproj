@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{17E18E94-EE29-40BA-AC1E-D12B3B889088}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{6188A3C3-4F71-4444-B387-FC494BEEF77B}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EventLogManager</RootNamespace>
-    <AssemblyName>EventLogManager</AssemblyName>
+    <RootNamespace>EventLogManager.Connection</RootNamespace>
+    <AssemblyName>EventLogManager.Connection</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,11 +20,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\..\DevelopmentEnvironment\cSharp\FxCop.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\..\DevelopmentEnvironment\cSharp\FxCop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,31 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventLogCommander.cs" />
+    <Compile Include="EventLogConnection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="IEventLogConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResponseString.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResponseString.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="AssemblySigningKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ResponseString.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResponseString.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EventLogConnection\EventLogConnection.csproj">
-      <Project>{6188a3c3-4f71-4444-b387-fc494beef77b}</Project>
-      <Name>EventLogConnection</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
