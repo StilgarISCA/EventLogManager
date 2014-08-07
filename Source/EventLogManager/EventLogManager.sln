@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLogManager", "EventLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLogManager.Test", "EventLogManager.Test\EventLogManager.Test.csproj", "{674B50E6-88B0-44A3-ADE9-B38B2E631D3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLogConnection", "EventLogConnection\EventLogConnection.csproj", "{6188A3C3-4F71-4444-B387-FC494BEEF77B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{674B50E6-88B0-44A3-ADE9-B38B2E631D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{674B50E6-88B0-44A3-ADE9-B38B2E631D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{674B50E6-88B0-44A3-ADE9-B38B2E631D3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6188A3C3-4F71-4444-B387-FC494BEEF77B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6188A3C3-4F71-4444-B387-FC494BEEF77B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6188A3C3-4F71-4444-B387-FC494BEEF77B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6188A3C3-4F71-4444-B387-FC494BEEF77B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

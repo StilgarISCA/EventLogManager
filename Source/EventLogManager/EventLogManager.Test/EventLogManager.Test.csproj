@@ -59,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventLogConnection\EventLogConnection.csproj">
+      <Project>{6188a3c3-4f71-4444-b387-fc494beef77b}</Project>
+      <Name>EventLogConnection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventLogManager\EventLogManager.csproj">
       <Project>{17e18e94-ee29-40ba-ac1e-d12b3b889088}</Project>
       <Name>EventLogManager</Name>

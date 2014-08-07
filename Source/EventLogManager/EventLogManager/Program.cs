@@ -6,7 +6,9 @@ namespace EventLogManager
    {
       static void Main( string[] args )
       {
-         Console.WriteLine( args );
+         var eventLogCommander = new EventLogCommander();
+
+         Console.WriteLine( eventLogCommander.ProcessCommand( args ) );
       }
    }
 }
