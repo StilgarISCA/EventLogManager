@@ -6,5 +6,6 @@ namespace EventLogManager.Connection
    public interface IEventLogConnection
    {
       Collection<string> GetEventLogs();
+      Collection<string> GetEventLogSources( string eventLogName );
    }
 }

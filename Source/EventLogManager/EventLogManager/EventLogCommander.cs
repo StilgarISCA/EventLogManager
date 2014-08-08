@@ -37,6 +37,18 @@ namespace EventLogManager
                }
             case "LIST":
                {
+                  // Request for Event Log Sources
+                  if ( args.Length > 1 )
+                  {
+                     if ( !string.IsNullOrWhiteSpace( args[1] ) )
+                     {
+                        string eventLog = args[1];
+                        Collection<string> eventLogSources = _eventLogConnection.GetEventLogSources( eventLog );
+                        returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogSources );
+                        break;
+                     }
+                  }
+                  // Get List of event Logs
                   Collection<string> eventLogs = _eventLogConnection.GetEventLogs();
                   returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogs );
                   break;

@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using EventLogManager.Connection;
 using Telerik.JustMock;
-using Telerik.JustMock.Helpers;
 using Xunit;
 using EventLogManagerString = EventLogManager.ResponseString;
 
@@ -52,12 +51,12 @@ namespace EventLogManager.Test
          // Arrange
          string returnValue = string.Empty;
          var simulatedEventLogs = new Collection<string>() { "SomeEventLog", "AnotherEventLog", "YetAnotherEventLog" };
-         string[] arguemntArray = { "List" };
+         string[] argumentArray = { "List" };
 
          Mock.Arrange( () => _eventLogConnection.GetEventLogs() ).Returns( simulatedEventLogs );
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( arguemntArray  );
+         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
 
          // Assert
          foreach( var eventLog in simulatedEventLogs )
@@ -70,17 +69,38 @@ namespace EventLogManager.Test
       public void ListWithEventLogName_DoesNotCallGetEventLogs()
       {
          // Arrange
-         string returnValue = string.Empty;
          var simulatedEventLogs = new Collection<string>() { "SomeEventLog", "AnotherEventLog", "YetAnotherEventLog" };
-         string[] arguemntArray = { "List", "NameOfEventLog" };
+         var simulatedEventLogSources = new Collection<string>() { "SomeEventLogSource", "AnotherEventLogSource", "YetAnotherEventLogSource" };
+         string[] argumentArray = { "List", "NameOfEventLog" };
 
+         Mock.Arrange( () => _eventLogConnection.GetEventLogSources( Arg.AnyString ) ).Returns( simulatedEventLogSources );
          Mock.Arrange( () => _eventLogConnection.GetEventLogs() ).Returns( simulatedEventLogs ).OccursNever();
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( arguemntArray );
+         _eventLogCommander.ProcessCommand( argumentArray );
 
          // Assert
-        Mock.Assert( _eventLogConnection );
+         Mock.Assert( _eventLogConnection );
+      }
+
+      [Fact]
+      public void ListWithEventLogName_ReturnsEventSourcesForGivenEventLog()
+      {
+         string returnValue = string.Empty;
+         var simulatedEventLogSources = new Collection<string>() { "SomeEventLogSource", "AnotherEventLogSource", "YetAnotherEventLogSource" };
+         string simulatedEventLogName = "NameOfEventLog";
+         string[] argumentArray = { "List", simulatedEventLogName };
+
+         Mock.Arrange( () => _eventLogConnection.GetEventLogSources( simulatedEventLogName ) ).Returns( simulatedEventLogSources );
+
+         // Act
+         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+
+         // Assert
+         foreach( var eventLogSource in simulatedEventLogSources )
+         {
+            Assert.Contains( eventLogSource, returnValue );
+         }
       }
    }
 }

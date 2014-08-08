@@ -28,6 +28,12 @@ namespace EventLogManager.Connection
          return eventLogNames;
       }
 
-
+      public Collection<string> GetEventLogSources( string eventLogName )
+      {
+         // This is going to be more complicated than expected, because
+         // it's not exposed through the EventLog API. Iterating through
+         // the registry will be required.
+         throw new System.NotImplementedException();
+      }
    }
 }
