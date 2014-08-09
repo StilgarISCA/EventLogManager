@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Text;
 using EventLogManager.Connection;
 
@@ -51,6 +52,12 @@ namespace EventLogManager
                   // Get List of event Logs
                   Collection<string> eventLogs = _eventLogConnection.GetEventLogs();
                   returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogs );
+                  break;
+               }
+            default:
+               {
+                  string argumentString = string.Join( " ", args );
+                  returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.UnknownCommand, argumentString );
                   break;
                }
 

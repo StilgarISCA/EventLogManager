@@ -61,11 +61,22 @@ namespace EventLogManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown Command {0}
+        ///Type &apos;Help&apos; for help.
+        /// </summary>
+        public static string UnknownCommand {
+            get {
+                return ResourceManager.GetString("UnknownCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///Manage Event Logs and Event Sources.
         ///
         ///Commands:
-        ///List - List existing event logs on computer.
+        ///List - List existing event logs on computer
+        ///List &quot;event log name&quot; - List event sources for event log.
         /// </summary>
         public static string UseageStatement {
             get {

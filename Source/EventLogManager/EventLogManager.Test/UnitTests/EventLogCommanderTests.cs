@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using EventLogManager.Connection;
 using Telerik.JustMock;
 using Xunit;
@@ -29,6 +30,38 @@ namespace EventLogManager.Test
 
          // Assert
          Assert.Equal( EventLogManagerString.UseageStatement, returnValue );
+      }
+
+      [Fact]
+      public void OneInvalidArgument_ReturnsUnknownCommandWithArgument()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string badArgument = "commandThatDoesNotExist";
+         string[] argumentArray = { badArgument };
+         string expectedOutput = string.Format( CultureInfo.CurrentCulture, EventLogManagerString.UnknownCommand, badArgument );
+
+         // Act
+         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+
+         // Assert
+         Assert.Equal( expectedOutput, returnValue );
+      }
+
+      [Fact]
+      public void OneInvalidArguments_ReturnsUnknownCommandWithArguments()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string[] argumentArray = { "commandThatDoesNotExist", "someOtherGarbageCommand" };
+         string argumentString = string.Join( " ", argumentArray );
+         string expectedOutput = string.Format( CultureInfo.CurrentCulture, EventLogManagerString.UnknownCommand, argumentString );
+
+         // Act
+         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+
+         // Assert
+         Assert.Equal( expectedOutput, returnValue );
       }
 
       [Fact]
