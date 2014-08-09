@@ -16,9 +16,9 @@ _This Project Is Not Complete_
 
 Commands
 ===========
-**Help** -- List the help
+**Help** -- Display the help
 
-**List** -- Lists all of the event logs by name on the local machine
+**List** -- Lists all of the event logs by name
 
 *Example*
 
@@ -32,3 +32,26 @@ Commands
     Security
     System
     
+**List "EventLogName"** -- Lists all of the event sources for the given event log. Enclose event log names with spaces in double quotes.
+
+*Example*
+    
+    EventLogManager List System
+
+*Output*
+    
+    ACPI
+    Application Popup
+    AppReadiness
+    Microsoft Antimalware
+    Microsoft-Windows-Time-Service
+    WPC
+
+*Example*
+
+    EventLogManager List "Key Management Service"
+
+*Output*
+
+    KmsRequests
+    Office Software Protection Platform Service
