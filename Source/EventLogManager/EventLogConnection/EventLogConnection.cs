@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using Microsoft.Win32;
 
 namespace EventLogManager.Connection
@@ -20,15 +21,12 @@ namespace EventLogManager.Connection
          // TODO: Handle SystemException which can be thrown by EventLog.GetEventLogs()
          // http://msdn.microsoft.com/en-us/library/74e2ybbs(v=vs.110).aspx
 
-         var eventLogNames = new Collection<string>();
-         EventLog[] eventLogs = EventLog.GetEventLogs();
+         var eventLogNames = new List<string>();
 
-         foreach( EventLog eventLog in eventLogs )
-         {
-            eventLogNames.Add( eventLog.Log );
-         }
+         eventLogNames.AddRange( from EventLog eventLog in EventLog.GetEventLogs()
+                                 select eventLog.Log );
 
-         return eventLogNames;
+         return new Collection<string>( eventLogNames );
       }
 
       /// <summary>
