@@ -38,9 +38,9 @@ namespace EventLogManager
             case "LIST":
                {
                   // Request for Event Log Sources
-                  if ( args.Length > 1 )
+                  if( args.Length > 1 )
                   {
-                     if ( !string.IsNullOrWhiteSpace( args[1] ) )
+                     if( !string.IsNullOrWhiteSpace( args[1] ) )
                      {
                         string eventLog = args[1];
                         Collection<string> eventLogSources = _eventLogConnection.GetEventLogSources( eventLog );
