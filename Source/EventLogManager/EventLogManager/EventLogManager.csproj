@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventLogCommander.cs" />
+    <Compile Include="CommandLogic.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,9 +72,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventLogConnection\EventLogConnection.csproj">
+    <ProjectReference Include="..\EventLogConnection\EventLogCommand.csproj">
       <Project>{6188a3c3-4f71-4444-b387-fc494beef77b}</Project>
-      <Name>EventLogConnection</Name>
+      <Name>EventLogCommand</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

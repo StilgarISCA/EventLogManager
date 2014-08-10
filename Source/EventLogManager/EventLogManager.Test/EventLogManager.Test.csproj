@@ -52,25 +52,24 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTests\EventLogCommanderTests.cs" />
+    <Compile Include="IntegrationTests\EventLogCommandTests.cs" />
+    <Compile Include="UnitTests\EventLogCommandLogicTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventLogConnection\EventLogConnection.csproj">
+    <ProjectReference Include="..\EventLogConnection\EventLogCommand.csproj">
       <Project>{6188a3c3-4f71-4444-b387-fc494beef77b}</Project>
-      <Name>EventLogConnection</Name>
+      <Name>EventLogCommand</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventLogManager\EventLogManager.csproj">
       <Project>{17e18e94-ee29-40ba-ac1e-d12b3b889088}</Project>
       <Name>EventLogManager</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IntegrationTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -7,8 +7,8 @@
     <ProjectGuid>{6188A3C3-4F71-4444-B387-FC494BEEF77B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EventLogManager.Connection</RootNamespace>
-    <AssemblyName>EventLogManager.Connection</AssemblyName>
+    <RootNamespace>EventLogManager.Command</RootNamespace>
+    <AssemblyName>EventLogManager.Command</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,9 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventLogConnection.cs" />
+    <Compile Include="EventLogCommand.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="IEventLogConnection.cs" />
+    <Compile Include="IEventLogCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
