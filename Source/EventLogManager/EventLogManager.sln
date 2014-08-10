@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLogManager", "EventLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLogManager.Test", "EventLogManager.Test\EventLogManager.Test.csproj", "{674B50E6-88B0-44A3-ADE9-B38B2E631D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLogConnection", "EventLogConnection\EventLogConnection.csproj", "{6188A3C3-4F71-4444-B387-FC494BEEF77B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLogCommand", "EventLogConnection\EventLogCommand.csproj", "{6188A3C3-4F71-4444-B387-FC494BEEF77B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

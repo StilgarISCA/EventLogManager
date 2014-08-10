@@ -1,22 +1,22 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
-using EventLogManager.Connection;
+using EventLogManager.Command;
 
 namespace EventLogManager
 {
-   public class EventLogCommander
+   public class CommandLogic
    {
-      private readonly IEventLogConnection _eventLogConnection;
+      private readonly IEventLogCommand _eventLogCommand;
 
-      public EventLogCommander()
+      public CommandLogic()
       {
-         _eventLogConnection = new EventLogConnection();
+         _eventLogCommand = new EventLogCommand();
       }
 
-      public EventLogCommander( IEventLogConnection eventLogConnection )
+      public CommandLogic( IEventLogCommand eventLogCommand )
       {
-         _eventLogConnection = eventLogConnection;
+         _eventLogCommand = eventLogCommand;
       }
 
       public string ProcessCommand( string[] args )
@@ -44,13 +44,13 @@ namespace EventLogManager
                      if( !string.IsNullOrWhiteSpace( args[1] ) )
                      {
                         string eventLog = args[1];
-                        Collection<string> eventLogSources = _eventLogConnection.GetEventLogSources( eventLog );
+                        Collection<string> eventLogSources = _eventLogCommand.GetEventLogSources( eventLog );
                         returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogSources );
                         break;
                      }
                   }
                   // Get List of event Logs
-                  Collection<string> eventLogs = _eventLogConnection.GetEventLogs();
+                  Collection<string> eventLogs = _eventLogCommand.GetEventLogs();
                   returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogs );
                   break;
                }

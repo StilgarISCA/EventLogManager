@@ -1,21 +1,21 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using EventLogManager.Connection;
+using EventLogManager.Command;
 using Telerik.JustMock;
 using Xunit;
 using EventLogManagerString = EventLogManager.ResponseString;
 
-namespace EventLogManager.Test
+namespace EventLogManager.Test.UnitTests
 {
-   public class EventLogCommanderTests
+   public class EventLogCommandLogicTests
    {
-      private readonly IEventLogConnection _eventLogConnection;
-      private readonly EventLogCommander _eventLogCommander;
+      private readonly IEventLogCommand _eventLogCommand;
+      private readonly CommandLogic _eventLogCommandLogic;
 
-      public EventLogCommanderTests()
+      public EventLogCommandLogicTests()
       {
-         _eventLogConnection = Mock.Create<IEventLogConnection>();
-         _eventLogCommander = new EventLogCommander( _eventLogConnection );
+         _eventLogCommand = Mock.Create<IEventLogCommand>();
+         _eventLogCommandLogic = new CommandLogic( _eventLogCommand );
       }
 
       [Fact]
@@ -26,7 +26,7 @@ namespace EventLogManager.Test
          string[] emptyArgumentArray = { };
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( emptyArgumentArray );
+         returnValue = _eventLogCommandLogic.ProcessCommand( emptyArgumentArray );
 
          // Assert
          Assert.Equal( EventLogManagerString.UseageStatement, returnValue );
@@ -42,7 +42,7 @@ namespace EventLogManager.Test
          string expectedOutput = string.Format( CultureInfo.CurrentCulture, EventLogManagerString.UnknownCommand, badArgument );
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
          Assert.Equal( expectedOutput, returnValue );
@@ -58,7 +58,7 @@ namespace EventLogManager.Test
          string expectedOutput = string.Format( CultureInfo.CurrentCulture, EventLogManagerString.UnknownCommand, argumentString );
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
          Assert.Equal( expectedOutput, returnValue );
@@ -72,7 +72,7 @@ namespace EventLogManager.Test
          string[] argumentArray = { "Help" };
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
          Assert.Equal( EventLogManagerString.UseageStatement, returnValue );
@@ -86,10 +86,10 @@ namespace EventLogManager.Test
          var simulatedEventLogs = new Collection<string>() { "SomeEventLog", "AnotherEventLog", "YetAnotherEventLog" };
          string[] argumentArray = { "List" };
 
-         Mock.Arrange( () => _eventLogConnection.GetEventLogs() ).Returns( simulatedEventLogs );
+         Mock.Arrange( () => _eventLogCommand.GetEventLogs() ).Returns( simulatedEventLogs );
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
          foreach( var eventLog in simulatedEventLogs )
@@ -106,14 +106,14 @@ namespace EventLogManager.Test
          var simulatedEventLogSources = new Collection<string>() { "SomeEventLogSource", "AnotherEventLogSource", "YetAnotherEventLogSource" };
          string[] argumentArray = { "List", "NameOfEventLog" };
 
-         Mock.Arrange( () => _eventLogConnection.GetEventLogSources( Arg.AnyString ) ).Returns( simulatedEventLogSources );
-         Mock.Arrange( () => _eventLogConnection.GetEventLogs() ).Returns( simulatedEventLogs ).OccursNever();
+         Mock.Arrange( () => _eventLogCommand.GetEventLogSources( Arg.AnyString ) ).Returns( simulatedEventLogSources );
+         Mock.Arrange( () => _eventLogCommand.GetEventLogs() ).Returns( simulatedEventLogs ).OccursNever();
 
          // Act
-         _eventLogCommander.ProcessCommand( argumentArray );
+         _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
-         Mock.Assert( _eventLogConnection );
+         Mock.Assert( _eventLogCommand );
       }
 
       [Fact]
@@ -124,10 +124,10 @@ namespace EventLogManager.Test
          string simulatedEventLogName = "NameOfEventLog";
          string[] argumentArray = { "List", simulatedEventLogName };
 
-         Mock.Arrange( () => _eventLogConnection.GetEventLogSources( simulatedEventLogName ) ).Returns( simulatedEventLogSources );
+         Mock.Arrange( () => _eventLogCommand.GetEventLogSources( simulatedEventLogName ) ).Returns( simulatedEventLogSources );
 
          // Act
-         returnValue = _eventLogCommander.ProcessCommand( argumentArray );
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
          foreach( var eventLogSource in simulatedEventLogSources )

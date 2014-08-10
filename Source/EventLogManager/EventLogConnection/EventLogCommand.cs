@@ -5,12 +5,12 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.Win32;
 
-namespace EventLogManager.Connection
+namespace EventLogManager.Command
 {
    /// <summary>
    /// Encapsulate logic for managing Windows Event Logs
    /// </summary>
-   public class EventLogConnection : IEventLogConnection
+   public class EventLogCommand : IEventLogCommand
    {
       /// <summary>
       /// Look at the event log and retrieve all the event log names

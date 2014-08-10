@@ -15,10 +15,16 @@ This command line tool is designed to help facilitate the creation and managemen
 _This Project Is Not Complete_
 
 Commands
-===========
+===============
 **Help** -- Display the help
 
 **List** -- Lists all of the event logs by name
+
+**List "EventLogName"** -- Lists all of the event sources for the given event log. Enclose event log names with spaces in double quotes.
+
+Examples
+===============
+**List**
 
 *Example*
 
@@ -32,9 +38,9 @@ Commands
     Security
     System
     
-**List "EventLogName"** -- Lists all of the event sources for the given event log. Enclose event log names with spaces in double quotes.
+**List "EventLogName"**
 
-*Example*
+*Example 1*
     
     EventLogManager List System
 
@@ -47,7 +53,7 @@ Commands
     Microsoft-Windows-Time-Service
     WPC
 
-*Example*
+*Example 2*
 
     EventLogManager List "Key Management Service"
 

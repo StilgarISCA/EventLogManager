@@ -1,9 +1,9 @@
 ﻿
 using System.Collections.ObjectModel;
 
-namespace EventLogManager.Connection
+namespace EventLogManager.Command
 {
-   public interface IEventLogConnection
+   public interface IEventLogCommand
    {
       Collection<string> GetEventLogs();
       Collection<string> GetEventLogSources( string eventLogName );
