@@ -1,26 +1,27 @@
-﻿
+﻿using System.Diagnostics.Eventing.Reader;
+using EventLogManager.Command;
+using Xunit;
+
 namespace EventLogManager.Test.IntegrationTests
 {
    public class EventLogCommandTests
    {
-      //[Fact]
-      //public void GetEventLogSources_CalledWithEventLogThatDoesNotExist_ThrowsEventLogNotFoundException()
-      //{
-      //   // Arrange
-      //   var eventLogCommands = new EventLogCommand();
-      //   string eventLogThatDoesNotExist = "EventLogThatDoesNotExist";
+      [Fact]
+      public void GetEventLogSources_CalledWithEventLogThatDoesNotExist_ThrowsEventLogNotFoundException()
+      {
+         // Arrange
+         var eventLogCommands = new EventLogCommand();
+         string eventLogThatDoesNotExist = "EventLogThatDoesNotExist";
+
+         // Assert
+         Assert.Throws<EventLogNotFoundException>(
+            // Act
+                                                  delegate
+                                                  {
+                                                     eventLogCommands.GetEventLogSources( eventLogThatDoesNotExist );
+                                                  } );
 
 
-
-      //   // Assert
-      //   Assert.Throws<EventLogNotFoundException>(
-      //      // Act
-      //                                            delegate
-      //                                            {
-      //                                               eventLogCommands.GetEventLogSources( eventLogThatDoesNotExist );
-      //                                            }
-      //      );
-
-      //}
+      }
    }
 }
