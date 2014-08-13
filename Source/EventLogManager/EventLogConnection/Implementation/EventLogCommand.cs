@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using EventLogManager.Command.Exceptions;
 using Microsoft.Win32;
 
 namespace EventLogManager.Command
@@ -12,6 +13,16 @@ namespace EventLogManager.Command
    /// </summary>
    public class EventLogCommand : IEventLogCommand
    {
+      /// <summary>
+      /// Checks for existence of event log with given name
+      /// </summary>
+      /// <param name="eventLogName">Name of event log to lookup</param>
+      /// <returns>true if exists, false otherwise</returns>
+      public bool DoesEventLogExist( string eventLogName )
+      {
+         return EventLog.Exists( eventLogName );
+      }
+
       /// <summary>
       /// Look at the event log and retrieve all the event log names
       /// </summary>
@@ -39,6 +50,11 @@ namespace EventLogManager.Command
       {
          // TODO: Handle exceptions thrown by OpenSubKey
          // http://msdn.microsoft.com/en-us/library/microsoft.win32.registrykey.getsubkeynames(v=vs.110).aspx
+
+         if( !DoesEventLogExist( eventLogName ) )
+         {
+            throw new EventLogNotFoundException( string.Format( CultureInfo.CurrentCulture, EventLogExceptionString.EventLogNotFoundException, eventLogName ) );
+         }
 
          var eventSourceNames = new List<string>();
          string registryLocation = string.Format( CultureInfo.InvariantCulture, @"SYSTEM\CurrentControlSet\Services\Eventlog\{0}", eventLogName );

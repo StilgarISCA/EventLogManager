@@ -44,6 +44,10 @@ namespace EventLogManager
                      if( !string.IsNullOrWhiteSpace( args[1] ) )
                      {
                         string eventLog = args[1];
+                        if( !_eventLogCommand.DoesEventLogExist( eventLog ) )
+                        {
+                           break;
+                        }
                         Collection<string> eventLogSources = _eventLogCommand.GetEventLogSources( eventLog );
                         returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogSources );
                         break;

@@ -119,11 +119,13 @@ namespace EventLogManager.Test.UnitTests
       [Fact]
       public void ListWithEventLogName_ReturnsEventSourcesForGivenEventLog()
       {
+         // Arrange
          string returnValue = string.Empty;
          var simulatedEventLogSources = new Collection<string>() { "SomeEventLogSource", "AnotherEventLogSource", "YetAnotherEventLogSource" };
          string simulatedEventLogName = "NameOfEventLog";
          string[] argumentArray = { "List", simulatedEventLogName };
 
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );
          Mock.Arrange( () => _eventLogCommand.GetEventLogSources( simulatedEventLogName ) ).Returns( simulatedEventLogSources );
 
          // Act
@@ -135,5 +137,25 @@ namespace EventLogManager.Test.UnitTests
             Assert.Contains( eventLogSource, returnValue );
          }
       }
+
+      [Fact]
+      public void ListWithEventLogName_CallsDoesEventLogExistOnce()
+      {
+         string returnValue = string.Empty;
+         string simulatedEventLogName = "NameOfEventLog";
+         var simulatedEventLogSources = new Collection<string>() { "SomeEventLogSource", "AnotherEventLogSource", "YetAnotherEventLogSource" };
+
+         string[] argumentArray = { "List", simulatedEventLogName };
+
+         Mock.Arrange( () => _eventLogCommand.GetEventLogSources( Arg.AnyString ) ).Returns( simulatedEventLogSources );
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( simulatedEventLogName ) ).Returns( true ).OccursOnce();
+
+         // Act
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Mock.Assert( _eventLogCommand );
+      }
+
    }
 }

@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.Eventing.Reader;
-using EventLogManager.Command;
+﻿using EventLogManager.Command;
+using EventLogManager.Command.Exceptions;
 using Xunit;
 
 namespace EventLogManager.Test.IntegrationTests
@@ -7,7 +7,7 @@ namespace EventLogManager.Test.IntegrationTests
    public class EventLogCommandTests
    {
       [Fact]
-      public void GetEventLogSources_CalledWithEventLogThatDoesNotExist_ThrowsEventLogNotFoundException()
+      public void GetEventLogSources_CalledWithEventLogThatDoesNotExist_ThrowsEventLogCommandLogNotFoundException()
       {
          // Arrange
          var eventLogCommands = new EventLogCommand();
