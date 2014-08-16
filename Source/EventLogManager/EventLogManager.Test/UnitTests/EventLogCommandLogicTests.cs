@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using EventLogManager.Command;
+using EventLogManager.Command.Exceptions;
 using Telerik.JustMock;
 using Xunit;
 using EventLogManagerString = EventLogManager.ResponseString;
@@ -19,7 +20,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void InvokedWithZeroArguments_ReturnsUsageString()
+      public void InvokeCommand_WithZeroArguments_ReturnsUsageString()
       {
          // Arrange
          string returnValue = string.Empty;
@@ -33,7 +34,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void OneInvalidArgument_ReturnsUnknownCommandWithArgument()
+      public void InvokeCommand_WithOneInvalidArgument_ReturnsUnknownCommandWithArgument()
       {
          // Arrange
          string returnValue = string.Empty;
@@ -49,7 +50,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void OneInvalidArguments_ReturnsUnknownCommandWithArguments()
+      public void InvokeCommand_WithOneInvalidArgument_ReturnsUnknownCommandWithArguments()
       {
          // Arrange
          string returnValue = string.Empty;
@@ -65,7 +66,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void HelpArgument_ReturnsUsageString()
+      public void Invoke_WithHelpArgument_ReturnsUsageString()
       {
          // Arrange
          string returnValue = string.Empty;
@@ -79,7 +80,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void ListArgument_ReturnsListOfEventLogs()
+      public void Invoke_WithListArgument_ReturnsListOfEventLogs()
       {
          // Arrange
          string returnValue = string.Empty;
@@ -99,7 +100,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void ListWithEventLogName_DoesNotCallGetEventLogs()
+      public void List_WithEventLogName_DoesNotCallGetEventLogs()
       {
          // Arrange
          var simulatedEventLogs = new Collection<string>() { "SomeEventLog", "AnotherEventLog", "YetAnotherEventLog" };
@@ -117,7 +118,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void ListWithEventLogName_ReturnsEventSourcesForGivenEventLog()
+      public void List_WithEventLogName_ReturnsEventSourcesForGivenEventLog()
       {
          // Arrange
          string returnValue = string.Empty;
@@ -139,7 +140,7 @@ namespace EventLogManager.Test.UnitTests
       }
 
       [Fact]
-      public void ListWithEventLogName_CallsDoesEventLogExistOnce()
+      public void List_WithEventLogName_CallsDoesEventLogExistOnce()
       {
          string returnValue = string.Empty;
          string simulatedEventLogName = "NameOfEventLog";
@@ -157,5 +158,24 @@ namespace EventLogManager.Test.UnitTests
          Mock.Assert( _eventLogCommand );
       }
 
+      [Fact]
+      public void List_WithInvalidEventLogName_ReturnsErrorMessage()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string eventLogThatDoesNotExist = "EventLogThatDoesNotExist";
+         string expectedValue = string.Format( EventLogManagerString.EventLogDoesNotExist, eventLogThatDoesNotExist );
+         string[] argumentArray = { "List", eventLogThatDoesNotExist };
+
+         Mock.Arrange( () => _eventLogCommand.GetEventLogSources( Arg.AnyString ) ).Throws<EventLogNotFoundException>();
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( eventLogThatDoesNotExist ) ).Returns( false );
+
+         // Act
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Assert.Equal( expectedValue, returnValue );
+      }
    }
 }
+

@@ -46,6 +46,7 @@ namespace EventLogManager
                         string eventLog = args[1];
                         if( !_eventLogCommand.DoesEventLogExist( eventLog ) )
                         {
+                           returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, eventLog );
                            break;
                         }
                         Collection<string> eventLogSources = _eventLogCommand.GetEventLogSources( eventLog );

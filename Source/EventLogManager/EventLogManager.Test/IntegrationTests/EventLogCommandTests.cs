@@ -16,12 +16,10 @@ namespace EventLogManager.Test.IntegrationTests
          // Assert
          Assert.Throws<EventLogNotFoundException>(
             // Act
-                                                  delegate
-                                                  {
-                                                     eventLogCommands.GetEventLogSources( eventLogThatDoesNotExist );
-                                                  } );
-
-
+            delegate
+            {
+               eventLogCommands.GetEventLogSources( eventLogThatDoesNotExist );
+            } );
       }
    }
 }
