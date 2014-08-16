@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace EventLogManager.Command.Exceptions
 {
+   /// <summary>
+   /// Thrown when event log does not exit
+   /// </summary>
    [Serializable]
    public class EventLogNotFoundException : Exception
    {
