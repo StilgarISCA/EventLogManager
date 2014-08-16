@@ -31,30 +31,17 @@ namespace EventLogManager
 
          switch( command )
          {
-            case "HELP":
+            case "HELP": // Display help
                {
                   returnMessage = ResponseString.UseageStatement;
                   break;
                }
-            case "LIST":
+            case "LIST": // List event logs or event sources for given log
                {
-                  // Request for Event Log Sources
-                  if( args.Length > 1 )
-                  {
-                     if( !string.IsNullOrWhiteSpace( args[1] ) )
-                     {
-                        string eventLog = args[1];
-                        Collection<string> eventLogSources = _eventLogCommand.GetEventLogSources( eventLog );
-                        returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogSources );
-                        break;
-                     }
-                  }
-                  // Get List of event Logs
-                  Collection<string> eventLogs = _eventLogCommand.GetEventLogs();
-                  returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogs );
+                  returnMessage = ProcessListCommand( args );
                   break;
                }
-            default:
+            default: // Unknown argument(s)
                {
                   string argumentString = string.Join( " ", args );
                   returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.UnknownCommand, argumentString );
@@ -63,6 +50,36 @@ namespace EventLogManager
 
          }
 
+         return returnMessage;
+      }
+
+      private string ProcessListCommand( string[] args )
+      {
+         string returnMessage = string.Empty;
+         // Request for Event Log Sources
+         if( args.Length > 1 )
+         {
+            if( !string.IsNullOrWhiteSpace( args[1] ) )
+            {
+               string eventLog = args[1];
+               if( !_eventLogCommand.DoesEventLogExist( eventLog ) )
+               {
+                  returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, eventLog );
+               }
+               else
+               {
+                  Collection<string> eventLogSources = _eventLogCommand.GetEventLogSources( eventLog );
+                  returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogSources );
+
+               }
+            }
+         }
+         else
+         {
+            // Get List of event Logs
+            Collection<string> eventLogs = _eventLogCommand.GetEventLogs();
+            returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogs );
+         }
          return returnMessage;
       }
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EventLogManager {
+namespace EventLogManager.Command.Exceptions {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace EventLogManager {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResponseString {
+    internal class EventLogExceptionString {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResponseString() {
+        internal EventLogExceptionString() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EventLogManager.ResponseString", typeof(ResponseString).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EventLogManager.Command.Exceptions.EventLogExceptionString", typeof(EventLogExceptionString).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace EventLogManager {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,35 +61,11 @@ namespace EventLogManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event Log {0} does not exist..
+        ///   Looks up a localized string similar to The Event Log {0} does not exist..
         /// </summary>
-        public static string EventLogDoesNotExist {
+        internal static string EventLogNotFoundException {
             get {
-                return ResourceManager.GetString("EventLogDoesNotExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown Command {0}
-        ///Type &apos;Help&apos; for help.
-        /// </summary>
-        public static string UnknownCommand {
-            get {
-                return ResourceManager.GetString("UnknownCommand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 
-        ///Manage Event Logs and Event Sources.
-        ///
-        ///Commands:
-        ///List - List existing event logs on computer
-        ///List &quot;event log name&quot; - List event sources for event log.
-        /// </summary>
-        public static string UseageStatement {
-            get {
-                return ResourceManager.GetString("UseageStatement", resourceCulture);
+                return ResourceManager.GetString("EventLogNotFoundException", resourceCulture);
             }
         }
     }

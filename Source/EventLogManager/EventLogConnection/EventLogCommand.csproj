@@ -22,6 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\..\..\..\DevelopmentEnvironment\cSharp\FxCop.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,10 +35,11 @@
     <CodeAnalysisRuleSet>..\..\..\..\DevelopmentEnvironment\cSharp\FxCop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AssemblySigningKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,13 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventLogCommand.cs" />
+    <Compile Include="Exceptions\EventLogExceptionString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventLogExceptionString.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\EventLogNotFoundException.cs" />
+    <Compile Include="Implementation\EventLogCommand.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IEventLogCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AssemblySigningKey.pfx" />
+    <EmbeddedResource Include="Exceptions\EventLogExceptionString.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventLogExceptionString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
