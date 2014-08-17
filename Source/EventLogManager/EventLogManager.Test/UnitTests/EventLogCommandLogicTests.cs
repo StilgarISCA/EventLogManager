@@ -213,6 +213,7 @@ namespace EventLogManager.Test.UnitTests
       [Fact]
       public void CreateSource_WithEventLogName_CallsDoesEventLogExistOnce()
       {
+         // Arrange
          string[] argumentArray = { "CreateSource", "NewEventSourceName", "SomeExistingEventLog" };
 
          Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( true );
@@ -228,6 +229,7 @@ namespace EventLogManager.Test.UnitTests
       [Fact]
       public void CreateSource_CallsDoesEventSourceExistOnce()
       {
+         // Arrange
          string[] argumentArray = { "CreateSource", "SomeEventSourceName", "SomeEventLogName" };
 
          Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );
@@ -238,6 +240,26 @@ namespace EventLogManager.Test.UnitTests
 
          // Assert
          Mock.Assert( _eventLogCommand );
+      }
+
+      [Fact]
+      public void CreateSource_CalledWithEventSourceThatAlreadyExists_ReturnsErrorMessage()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string validEventLogName = "validEventLog";
+         string eventSourceThatAlreadyExists = "eventSourceThatAlreadyExists";
+         string expectedValue = string.Format( EventLogManagerString.EventSourceAlreadyExists, eventSourceThatAlreadyExists );
+         string[] argumentArray = { "CreateSource", eventSourceThatAlreadyExists, validEventLogName };
+
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );
+         Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( true );
+
+         // Act
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Assert.Equal( expectedValue, returnValue );
       }
    }
 }

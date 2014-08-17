@@ -70,6 +70,15 @@ namespace EventLogManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Source {0} already exists..
+        /// </summary>
+        public static string EventSourceAlreadyExists {
+            get {
+                return ResourceManager.GetString("EventSourceAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing arguments for command {0}.
         ///Type &apos;Help&apos; for help.
         /// </summary>
