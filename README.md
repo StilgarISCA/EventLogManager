@@ -16,14 +16,27 @@ _This Project Is Not Complete_
 
 Commands
 ===============
-**Help** -- Display the help
+**Help** &ndash; Display the help
 
-**List** -- Lists all of the event logs by name
+**CreateSource "NewEventSourceName" "TargetEventLogName"** &ndash; Creates a new event source in event log. Enclose event log / source names with spaces in double quotes.
 
-**List "EventLogName"** -- Lists all of the event sources for the given event log. Enclose event log names with spaces in double quotes.
+**List** &ndash; Lists all of the event logs by name
+
+**List "EventLogName"** &ndash; Lists all of the event sources for the given event log. Enclose event log names with spaces in double quotes.
 
 Examples
 ===============
+
+**CreateSource**
+
+*Example*
+
+    EventLogManager CreateSource "Account Deleter Service" Application
+
+*Output*
+
+    Event source "Account Deleter Service" created in Application event log.
+
 **List**
 
 *Example*

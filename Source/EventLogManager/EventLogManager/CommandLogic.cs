@@ -41,6 +41,14 @@ namespace EventLogManager
                   returnMessage = ProcessListCommand( args );
                   break;
                }
+            case "CREATESOURCE": // Create a new event source in given event log
+               {
+                  if ( args.Length <= 1 )
+                  {
+                     returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
+                  }
+                  break;
+               }
             default: // Unknown argument(s)
                {
                   string argumentString = string.Join( " ", args );

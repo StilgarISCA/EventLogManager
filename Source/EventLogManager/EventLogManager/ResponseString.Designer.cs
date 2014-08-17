@@ -70,8 +70,18 @@ namespace EventLogManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Command {0}
+        ///   Looks up a localized string similar to Missing arguments for command {0}.
         ///Type &apos;Help&apos; for help.
+        /// </summary>
+        public static string MissingArgument {
+            get {
+                return ResourceManager.GetString("MissingArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown command {0}.
+        ///Type &apos;Help&apos; for help..
         /// </summary>
         public static string UnknownCommand {
             get {

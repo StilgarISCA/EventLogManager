@@ -176,6 +176,21 @@ namespace EventLogManager.Test.UnitTests
          // Assert
          Assert.Equal( expectedValue, returnValue );
       }
+
+      [Fact]
+      public void CreateSource_WithNoArguments_ReturnsErrorMessage()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string programCommand = "CreateSource";
+         string expectedValue = string.Format( EventLogManagerString.MissingArgument, programCommand );
+
+         // Act
+         returnValue = _eventLogCommandLogic.ProcessCommand( new string[] { programCommand } );
+
+         // Assert
+         Assert.Equal( expectedValue, returnValue );
+      }
    }
 }
 
