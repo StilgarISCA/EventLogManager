@@ -43,9 +43,18 @@ namespace EventLogManager
                }
             case "CREATESOURCE": // Create a new event source in given event log
                {
-                  if ( args.Length <= 1 )
+                  if( args.Length <= 2 )
                   {
                      returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
+                  }
+                  else
+                  {
+                     //string newEventSource = args[1];
+                     string targetEventLog = args[2];
+                     if( !_eventLogCommand.DoesEventLogExist( targetEventLog ) )
+                     {
+                        returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, targetEventLog );
+                     }
                   }
                   break;
                }
@@ -78,9 +87,9 @@ namespace EventLogManager
                {
                   Collection<string> eventLogSources = _eventLogCommand.GetEventLogSources( eventLog );
                   returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogSources );
-
                }
             }
+            // TODO: Missing else case here for whitespace arguments
          }
          else
          {

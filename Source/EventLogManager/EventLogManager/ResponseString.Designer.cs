@@ -95,7 +95,8 @@ namespace EventLogManager {
         ///
         ///Commands:
         ///List - List existing event logs on computer
-        ///List &quot;event log name&quot; - List event sources for event log.
+        ///List &quot;event log name&quot; - List event sources for event log
+        ///CreateSource &quot;NewEventSourceName&quot; &quot;TargetEventLog&quot; - Create new event source in event log.
         /// </summary>
         public static string UseageStatement {
             get {
