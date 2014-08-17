@@ -33,6 +33,16 @@ namespace EventLogManager.Command
       }
 
       /// <summary>
+      /// Checks for existence of event source with given name
+      /// </summary>
+      /// <param name="eventSourceName">Name of event source to lookup</param>
+      /// <returns>true if exists, false otherwise</returns>
+      public bool DoesEventSourceExist( string eventSourceName )
+      {
+         return EventLog.SourceExists( eventSourceName );
+      }
+
+      /// <summary>
       /// Look at the event log and retrieve all the event log names
       /// </summary>
       /// <returns>Collection of event log names</returns>

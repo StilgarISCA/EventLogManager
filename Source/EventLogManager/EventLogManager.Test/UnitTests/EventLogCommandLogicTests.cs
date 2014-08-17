@@ -198,17 +198,46 @@ namespace EventLogManager.Test.UnitTests
          // Arrange
          string returnValue = string.Empty;
          string eventLogThatDoesNotExist = "EventLogThatDoesNotExist";
-         string newEventSource = "NewEventSource";
          string expectedValue = string.Format( EventLogManagerString.EventLogDoesNotExist, eventLogThatDoesNotExist );
-         string[] argumentArray = { "CreateSource", newEventSource, eventLogThatDoesNotExist };
+         string[] argumentArray = { "CreateSource", "NewEventSourceName", eventLogThatDoesNotExist };
 
-         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( eventLogThatDoesNotExist ) ).Returns( false );
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( false );
 
          // Act
          returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
          Assert.Equal( expectedValue, returnValue );
+      }
+
+      [Fact]
+      public void CreateSource_WithEventLogName_CallsDoesEventLogExistOnce()
+      {
+         string[] argumentArray = { "CreateSource", "NewEventSourceName", "SomeExistingEventLog" };
+
+         Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( true );
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true ).OccursOnce();
+
+         // Act
+         _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Mock.Assert( _eventLogCommand );
+      }
+
+      [Fact]
+      public void CreateSource_CallsDoesEventSourceExistOnce()
+      {
+         string[] argumentArray = { "CreateSource", "SomeEventSourceName", "SomeEventLogName" };
+
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );
+         Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( true ).OccursOnce();
+
+         // Act
+         _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Mock.Assert( _eventLogCommand );
       }
    }
 }

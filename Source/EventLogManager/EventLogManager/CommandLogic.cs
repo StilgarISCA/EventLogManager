@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
 using System.Text;
 using EventLogManager.Command;
@@ -49,12 +50,18 @@ namespace EventLogManager
                   }
                   else
                   {
-                     //string newEventSource = args[1];
+                     string newEventSource = args[1];
                      string targetEventLog = args[2];
+
                      if( !_eventLogCommand.DoesEventLogExist( targetEventLog ) )
                      {
                         returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, targetEventLog );
                      }
+                     else if( !_eventLogCommand.DoesEventSourceExist( newEventSource ) )
+                     {
+                        throw new EventLogException( "event source already exists" );
+                     }
+
                   }
                   break;
                }
