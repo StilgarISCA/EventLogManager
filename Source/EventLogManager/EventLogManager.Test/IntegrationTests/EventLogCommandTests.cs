@@ -21,5 +21,22 @@ namespace EventLogManager.Test.IntegrationTests
                eventLogCommands.GetEventLogSources( eventLogThatDoesNotExist );
             } );
       }
+
+      [Fact]
+      public void CreateEventSource_CalledWithEventLogThatDoesNotExist_ThrowsEventLogCommandLogNotFoundException()
+      {
+         // Arrange
+         var eventLogCommands = new EventLogCommand();
+         string eventLogThatDoesNotExist = "EventLogThatDoesNotExist";
+         string newEventSourceName = "NewEventSourceName";
+
+         // Assert
+         Assert.Throws<EventLogNotFoundException>(
+            // Act
+            delegate
+            {
+               eventLogCommands.CreateEventSource( newEventSourceName, eventLogThatDoesNotExist );
+            } );
+      }
    }
 }

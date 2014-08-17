@@ -13,6 +13,15 @@ namespace EventLogManager.Command
    /// </summary>
    public class EventLogCommand : IEventLogCommand
    {
+      public void CreateEventSource( string newEventSourceName, string targetEventLogName )
+      {
+         if( !DoesEventLogExist( targetEventLogName ) )
+         {
+            throw new EventLogNotFoundException( string.Format( CultureInfo.CurrentCulture, EventLogExceptionString.EventLogNotFoundException, targetEventLogName ) );
+         }
+         throw new System.NotImplementedException();
+      }
+
       /// <summary>
       /// Checks for existence of event log with given name
       /// </summary>
@@ -46,6 +55,7 @@ namespace EventLogManager.Command
       /// </summary>
       /// <param name="eventLogName">event log to list sources of</param>
       /// <returns>Collection of event source names</returns>
+      /// <exception cref="EventLogNotFoundException">Event Log does not exist</exception>
       public Collection<string> GetEventLogSources( string eventLogName )
       {
          // TODO: Handle exceptions thrown by OpenSubKey
