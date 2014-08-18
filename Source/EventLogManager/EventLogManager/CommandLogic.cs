@@ -60,6 +60,8 @@ namespace EventLogManager
                      {
                         returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceAlreadyExists, newEventSource );
                      }
+
+                     _eventLogCommand.CreateEventSource( newEventSource, targetEventLog );
                   }
                   break;
                }

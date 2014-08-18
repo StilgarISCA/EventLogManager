@@ -261,6 +261,25 @@ namespace EventLogManager.Test.UnitTests
          // Assert
          Assert.Equal( expectedValue, returnValue );
       }
+
+      [Fact]
+      public void CreateSource_CalledWithValidArguments_CallsCreateEventSourceWithCorrectArgumentsOnce()
+      {
+         // Arrange
+         string eventSourceName = "SomeEventSourceName";
+         string eventLogName = "SomeEventLogName";
+         string[] argumentArray = { "CreateSource", eventSourceName, eventLogName };
+
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );
+         Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( false );
+         Mock.Arrange( () => _eventLogCommand.CreateEventSource( eventSourceName, eventLogName ) ).OccursOnce();
+
+         // Act
+         _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Mock.Assert( _eventLogCommand );
+      }
    }
 }
 

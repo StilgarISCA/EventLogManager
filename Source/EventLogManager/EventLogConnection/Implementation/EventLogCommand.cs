@@ -13,13 +13,23 @@ namespace EventLogManager.Command
    /// </summary>
    public class EventLogCommand : IEventLogCommand
    {
+      /// <summary>
+      /// Create a new event source for given event log
+      /// </summary>
+      /// <param name="newEventSourceName"></param>
+      /// <param name="targetEventLogName"></param>
+      /// <exception cref="EventLogNotFoundException">Target event log does not exist</exception>
       public void CreateEventSource( string newEventSourceName, string targetEventLogName )
       {
          if( !DoesEventLogExist( targetEventLogName ) )
          {
             throw new EventLogNotFoundException( string.Format( CultureInfo.CurrentCulture, EventLogExceptionString.EventLogNotFoundException, targetEventLogName ) );
          }
-         throw new System.NotImplementedException();
+
+         // TODO: handle exceptions thrown by CreateEventSource()?
+         // http://msdn.microsoft.com/en-us/library/5zbwd3s3(v=vs.110).aspx
+
+         EventLog.CreateEventSource( newEventSourceName, targetEventLogName );
       }
 
       /// <summary>
