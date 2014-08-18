@@ -79,6 +79,15 @@ namespace EventLogManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Source {0} created in {1} Event Log..
+        /// </summary>
+        public static string EventSourceCreated {
+            get {
+                return ResourceManager.GetString("EventSourceCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing arguments for command {0}.
         ///Type &apos;Help&apos; for help.
         /// </summary>

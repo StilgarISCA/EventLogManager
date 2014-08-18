@@ -123,6 +123,9 @@
   <data name="EventSourceAlreadyExists" xml:space="preserve">
     <value>Event Source {0} already exists.</value>
   </data>
+  <data name="EventSourceCreated" xml:space="preserve">
+    <value>Event Source {0} created in {1} Event Log.</value>
+  </data>
   <data name="MissingArgument" xml:space="preserve">
     <value>Missing arguments for command {0}.
 Type 'Help' for help</value>

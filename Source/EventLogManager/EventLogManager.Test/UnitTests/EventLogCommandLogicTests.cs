@@ -280,6 +280,26 @@ namespace EventLogManager.Test.UnitTests
          // Assert
          Mock.Assert( _eventLogCommand );
       }
+
+      [Fact]
+      public void CreateSource_CalledWithValidArguments_ReturnsSuccessMessage()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string eventSourceName = "SomeEventSourceName";
+         string eventLogName = "SomeEventLogName";
+         string expectedResult = string.Format( EventLogManagerString.EventSourceCreated, eventSourceName, eventLogName );
+         string[] argumentArray = { "CreateSource", eventSourceName, eventLogName };
+
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );
+         Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( false );
+
+         // Act
+         returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Assert.Equal( expectedResult, returnValue );
+      }
    }
 }
 

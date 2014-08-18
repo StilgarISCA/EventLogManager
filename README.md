@@ -35,7 +35,7 @@ Examples
 
 *Output*
 
-    Event source "Account Deleter Service" created in Application event log.
+    Event Source "Account Deleter Service" created in Application Event Log.
 
 **List**
 

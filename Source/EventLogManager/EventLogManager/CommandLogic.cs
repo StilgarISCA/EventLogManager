@@ -55,13 +55,17 @@ namespace EventLogManager
                      if( !_eventLogCommand.DoesEventLogExist( targetEventLog ) )
                      {
                         returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, targetEventLog );
+                        break;
                      }
                      else if( _eventLogCommand.DoesEventSourceExist( newEventSource ) )
                      {
                         returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceAlreadyExists, newEventSource );
+                        break;
                      }
 
                      _eventLogCommand.CreateEventSource( newEventSource, targetEventLog );
+
+                     returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceCreated, newEventSource, targetEventLog );
                   }
                   break;
                }
