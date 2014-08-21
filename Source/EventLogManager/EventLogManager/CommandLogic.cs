@@ -43,30 +43,7 @@ namespace EventLogManager
                }
             case "CREATESOURCE": // Create a new event source in given event log
                {
-                  if( args.Length <= 2 )
-                  {
-                     returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
-                  }
-                  else
-                  {
-                     string newEventSource = args[1];
-                     string targetEventLog = args[2];
-
-                     if( !_eventLogCommand.DoesEventLogExist( targetEventLog ) )
-                     {
-                        returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, targetEventLog );
-                        break;
-                     }
-                     else if( _eventLogCommand.DoesEventSourceExist( newEventSource ) )
-                     {
-                        returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceAlreadyExists, newEventSource );
-                        break;
-                     }
-
-                     _eventLogCommand.CreateEventSource( newEventSource, targetEventLog );
-
-                     returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceCreated, newEventSource, targetEventLog );
-                  }
+                  returnMessage = ProcessCreateSourceCommand( args );
                   break;
                }
             default: // Unknown argument(s)
@@ -79,6 +56,30 @@ namespace EventLogManager
          }
 
          return returnMessage;
+      }
+
+      private string ProcessCreateSourceCommand( string[] args )
+      {
+         if( args.Length <= 2 )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
+         }
+
+         string newEventSource = args[1];
+         string targetEventLog = args[2];
+
+         if( !_eventLogCommand.DoesEventLogExist( targetEventLog ) )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, targetEventLog );
+         }
+
+         if( _eventLogCommand.DoesEventSourceExist( newEventSource ) )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceAlreadyExists, newEventSource );
+         }
+
+         _eventLogCommand.CreateEventSource( newEventSource, targetEventLog );
+         return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceCreated, newEventSource, targetEventLog );
       }
 
       private string ProcessListCommand( string[] args )
