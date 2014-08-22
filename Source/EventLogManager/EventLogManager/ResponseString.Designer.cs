@@ -70,8 +70,36 @@ namespace EventLogManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Command {0}
+        ///   Looks up a localized string similar to Event Source {0} already exists..
+        /// </summary>
+        public static string EventSourceAlreadyExists {
+            get {
+                return ResourceManager.GetString("EventSourceAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Source {0} created in {1} Event Log..
+        /// </summary>
+        public static string EventSourceCreated {
+            get {
+                return ResourceManager.GetString("EventSourceCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing arguments for command {0}.
         ///Type &apos;Help&apos; for help.
+        /// </summary>
+        public static string MissingArgument {
+            get {
+                return ResourceManager.GetString("MissingArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown command {0}.
+        ///Type &apos;Help&apos; for help..
         /// </summary>
         public static string UnknownCommand {
             get {
@@ -85,7 +113,8 @@ namespace EventLogManager {
         ///
         ///Commands:
         ///List - List existing event logs on computer
-        ///List &quot;event log name&quot; - List event sources for event log.
+        ///List &quot;event log name&quot; - List event sources for event log
+        ///CreateSource &quot;NewEventSourceName&quot; &quot;TargetEventLog&quot; - Create new event source in event log.
         /// </summary>
         public static string UseageStatement {
             get {

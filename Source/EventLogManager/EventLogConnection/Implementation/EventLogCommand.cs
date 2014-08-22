@@ -14,6 +14,25 @@ namespace EventLogManager.Command
    public class EventLogCommand : IEventLogCommand
    {
       /// <summary>
+      /// Create a new event source for given event log
+      /// </summary>
+      /// <param name="newEventSourceName"></param>
+      /// <param name="targetEventLogName"></param>
+      /// <exception cref="EventLogNotFoundException">Target event log does not exist</exception>
+      public void CreateEventSource( string newEventSourceName, string targetEventLogName )
+      {
+         if( !DoesEventLogExist( targetEventLogName ) )
+         {
+            throw new EventLogNotFoundException( string.Format( CultureInfo.CurrentCulture, EventLogExceptionString.EventLogNotFoundException, targetEventLogName ) );
+         }
+
+         // TODO: handle exceptions thrown by CreateEventSource()?
+         // http://msdn.microsoft.com/en-us/library/5zbwd3s3(v=vs.110).aspx
+
+         EventLog.CreateEventSource( newEventSourceName, targetEventLogName );
+      }
+
+      /// <summary>
       /// Checks for existence of event log with given name
       /// </summary>
       /// <param name="eventLogName">Name of event log to lookup</param>
@@ -21,6 +40,16 @@ namespace EventLogManager.Command
       public bool DoesEventLogExist( string eventLogName )
       {
          return EventLog.Exists( eventLogName );
+      }
+
+      /// <summary>
+      /// Checks for existence of event source with given name
+      /// </summary>
+      /// <param name="eventSourceName">Name of event source to lookup</param>
+      /// <returns>true if exists, false otherwise</returns>
+      public bool DoesEventSourceExist( string eventSourceName )
+      {
+         return EventLog.SourceExists( eventSourceName );
       }
 
       /// <summary>
@@ -46,6 +75,7 @@ namespace EventLogManager.Command
       /// </summary>
       /// <param name="eventLogName">event log to list sources of</param>
       /// <returns>Collection of event source names</returns>
+      /// <exception cref="EventLogNotFoundException">Event Log does not exist</exception>
       public Collection<string> GetEventLogSources( string eventLogName )
       {
          // TODO: Handle exceptions thrown by OpenSubKey

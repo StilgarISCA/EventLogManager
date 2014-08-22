@@ -41,6 +41,11 @@ namespace EventLogManager
                   returnMessage = ProcessListCommand( args );
                   break;
                }
+            case "CREATESOURCE": // Create a new event source in given event log
+               {
+                  returnMessage = ProcessCreateSourceCommand( args );
+                  break;
+               }
             default: // Unknown argument(s)
                {
                   string argumentString = string.Join( " ", args );
@@ -51,6 +56,30 @@ namespace EventLogManager
          }
 
          return returnMessage;
+      }
+
+      private string ProcessCreateSourceCommand( string[] args )
+      {
+         if( args.Length <= 2 )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
+         }
+
+         string newEventSource = args[1];
+         string targetEventLog = args[2];
+
+         if( !_eventLogCommand.DoesEventLogExist( targetEventLog ) )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogDoesNotExist, targetEventLog );
+         }
+
+         if( _eventLogCommand.DoesEventSourceExist( newEventSource ) )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceAlreadyExists, newEventSource );
+         }
+
+         _eventLogCommand.CreateEventSource( newEventSource, targetEventLog );
+         return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceCreated, newEventSource, targetEventLog );
       }
 
       private string ProcessListCommand( string[] args )
@@ -70,9 +99,9 @@ namespace EventLogManager
                {
                   Collection<string> eventLogSources = _eventLogCommand.GetEventLogSources( eventLog );
                   returnMessage = ConvertCollectionToNewLineDelimitedString( eventLogSources );
-
                }
             }
+            // TODO: Missing else case here for whitespace arguments
          }
          else
          {
