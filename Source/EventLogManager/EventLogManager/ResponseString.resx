@@ -141,6 +141,7 @@ Manage Event Logs and Event Sources.
 Commands:
 List - List existing event logs on computer
 List "event log name" - List event sources for event log
-CreateSource "NewEventSourceName" "TargetEventLog" - Create new event source in event log</value>
+CreateSource "NewEventSourceName" "TargetEventLog" - Create new event source in event log
+DeleteSource "EventSourceToDelete" "ContainingEventLog" - Delete an event source in event log</value>
   </data>
 </root>
