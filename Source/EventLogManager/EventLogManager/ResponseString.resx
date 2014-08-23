@@ -126,6 +126,12 @@
   <data name="EventSourceCreated" xml:space="preserve">
     <value>Event Source {0} created in {1} Event Log.</value>
   </data>
+  <data name="EventSourceDeleted" xml:space="preserve">
+    <value>Event Source {0} deleted.</value>
+  </data>
+  <data name="EventSourceDoesNotExist" xml:space="preserve">
+    <value>Event Source {0} does not exist.</value>
+  </data>
   <data name="MissingArgument" xml:space="preserve">
     <value>Missing arguments for command {0}.
 Type 'Help' for help</value>

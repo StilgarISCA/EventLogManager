@@ -88,6 +88,24 @@ namespace EventLogManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Source {0} deleted..
+        /// </summary>
+        public static string EventSourceDeleted {
+            get {
+                return ResourceManager.GetString("EventSourceDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Source {0} does not exist..
+        /// </summary>
+        public static string EventSourceDoesNotExist {
+            get {
+                return ResourceManager.GetString("EventSourceDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing arguments for command {0}.
         ///Type &apos;Help&apos; for help.
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -30,6 +31,11 @@ namespace EventLogManager.Command
          // http://msdn.microsoft.com/en-us/library/5zbwd3s3(v=vs.110).aspx
 
          EventLog.CreateEventSource( newEventSourceName, targetEventLogName );
+      }
+
+      public void DeleteEventSource( string eventSourceName )
+      {
+         throw new NotImplementedException();
       }
 
       /// <summary>

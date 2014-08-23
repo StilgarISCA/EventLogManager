@@ -12,7 +12,7 @@ The problem with logging to custom event logs and event log sources is that both
 
 This command line tool is designed to help facilitate the creation and management of these custom event logs.
 
-_This Project Is Not Complete_
+_This Project Is Not Complete, but the code in the master branch should be functional_
 
 Commands
 ===============
@@ -20,7 +20,7 @@ Commands
 
 **CreateSource "NewEventSourceName" "TargetEventLogName"** &ndash; Creates a new event source in event log. Enclose event log / source names with spaces in double quotes.
 
-**DeleteSource "EventSourceNameToDelete" "ContainingEventLogName"** &ndash; Deletes an event source in event log. Enclose event log / source names with spaces in double quotes.
+**DeleteSource "EventSourceNameToDelete"** &ndash; Deletes an event source. Enclose source names with spaces in double quotes.
 
 **List** &ndash; Lists all of the event logs by name
 
@@ -44,11 +44,11 @@ Examples
 
 *Example*
 
-    EventLogManager DeleteSource "Account Deleter Service" Application
+    EventLogManager DeleteSource "Account Deleter Service"
 
 *Output*
 
-    Event Source "Account Deleter Service" deleted from Application Event Log.
+    Event Source "Account Deleter Service" deleted.
 
 **List**
 
