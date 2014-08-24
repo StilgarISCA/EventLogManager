@@ -88,6 +88,24 @@ namespace EventLogManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Source {0} deleted..
+        /// </summary>
+        public static string EventSourceDeleted {
+            get {
+                return ResourceManager.GetString("EventSourceDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Source {0} does not exist..
+        /// </summary>
+        public static string EventSourceDoesNotExist {
+            get {
+                return ResourceManager.GetString("EventSourceDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing arguments for command {0}.
         ///Type &apos;Help&apos; for help.
         /// </summary>
@@ -114,7 +132,8 @@ namespace EventLogManager {
         ///Commands:
         ///List - List existing event logs on computer
         ///List &quot;event log name&quot; - List event sources for event log
-        ///CreateSource &quot;NewEventSourceName&quot; &quot;TargetEventLog&quot; - Create new event source in event log.
+        ///CreateSource &quot;NewEventSourceName&quot; &quot;TargetEventLog&quot; - Create new event source in event log
+        ///DeleteSource &quot;EventSourceToDelete&quot; &quot;ContainingEventLog&quot; - Delete an event source in event log.
         /// </summary>
         public static string UseageStatement {
             get {

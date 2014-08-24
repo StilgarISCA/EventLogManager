@@ -57,6 +57,7 @@
       <DependentUpon>EventLogExceptionString.resx</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\EventLogNotFoundException.cs" />
+    <Compile Include="Exceptions\EventSourceNotFoundException.cs" />
     <Compile Include="Implementation\EventLogCommand.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IEventLogCommand.cs" />

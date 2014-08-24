@@ -7,7 +7,7 @@ namespace EventLogManager.Test.IntegrationTests
    public class EventLogCommandTests
    {
       [Fact]
-      public void GetEventLogSources_CalledWithEventLogThatDoesNotExist_ThrowsEventLogCommandLogNotFoundException()
+      public void GetEventLogSources_WithEventLogThatDoesNotExist_ThrowsEventLogNotFoundException()
       {
          // Arrange
          var eventLogCommands = new EventLogCommand();
@@ -23,7 +23,7 @@ namespace EventLogManager.Test.IntegrationTests
       }
 
       [Fact]
-      public void CreateEventSource_CalledWithEventLogThatDoesNotExist_ThrowsEventLogCommandLogNotFoundException()
+      public void CreateEventSource_WithEventLogThatDoesNotExist_ThrowsEventLogNotFoundException()
       {
          // Arrange
          var eventLogCommands = new EventLogCommand();
@@ -36,6 +36,22 @@ namespace EventLogManager.Test.IntegrationTests
             delegate
             {
                eventLogCommands.CreateEventSource( newEventSourceName, eventLogThatDoesNotExist );
+            } );
+      }
+
+      [Fact]
+      public void DeleteEventsource_WithEventSourceThatDoesNotExist_ThrowsEventSourceNotFoundException()
+      {
+         // Arrange
+         var eventLogCommands = new EventLogCommand();
+         string eventSourceThatDoesNotExist = "AnyEventSourceThatDoesNotExist";
+
+         // Assert
+         Assert.Throws<EventSourceNotFoundException>(
+            // Act
+            delegate
+            {
+               eventLogCommands.DeleteEventSource( eventSourceThatDoesNotExist );
             } );
       }
    }

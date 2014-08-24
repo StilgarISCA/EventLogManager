@@ -68,5 +68,14 @@ namespace EventLogManager.Command.Exceptions {
                 return ResourceManager.GetString("EventLogNotFoundException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Event Source {0} does not exist..
+        /// </summary>
+        internal static string EventSourceNotFoundException {
+            get {
+                return ResourceManager.GetString("EventSourceNotFoundException", resourceCulture);
+            }
+        }
     }
 }

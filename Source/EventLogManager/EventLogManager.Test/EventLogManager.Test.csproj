@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="IntegrationTests\EventLogCommandTests.cs" />
+    <Compile Include="UnitTests\EventLogCommandLogicTests\DeleteSourceTests.cs" />
     <Compile Include="UnitTests\EventLogCommandLogicTests\CreateSourceTests.cs" />
     <Compile Include="UnitTests\EventLogCommandLogicTests\ListTests.cs" />
     <Compile Include="UnitTests\EventLogCommandLogicTests\CommandTests.cs" />

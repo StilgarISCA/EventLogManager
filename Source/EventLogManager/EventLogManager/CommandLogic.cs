@@ -46,6 +46,23 @@ namespace EventLogManager
                   returnMessage = ProcessCreateSourceCommand( args );
                   break;
                }
+            case "DELETESOURCE": // Delete an event source
+               {
+                  if( args.Length <= 1 )
+                  {
+                     return string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
+                  }
+
+                  string eventSourceToDelete = args[1];
+                  if( !_eventLogCommand.DoesEventSourceExist( eventSourceToDelete ) )
+                  {
+                     return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDoesNotExist, eventSourceToDelete );
+                  }
+
+                  _eventLogCommand.DeleteEventSource( eventSourceToDelete );
+                  returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDeleted, eventSourceToDelete );
+                  break;
+               }
             default: // Unknown argument(s)
                {
                   string argumentString = string.Join( " ", args );
