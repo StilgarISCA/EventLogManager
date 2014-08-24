@@ -120,4 +120,7 @@
   <data name="EventLogNotFoundException" xml:space="preserve">
     <value>The Event Log {0} does not exist.</value>
   </data>
+  <data name="EventSourceNotFoundException" xml:space="preserve">
+    <value>The Event Source {0} does not exist.</value>
+  </data>
 </root>

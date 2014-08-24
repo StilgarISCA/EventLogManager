@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -33,9 +32,22 @@ namespace EventLogManager.Command
          EventLog.CreateEventSource( newEventSourceName, targetEventLogName );
       }
 
+      /// <summary>
+      /// Delete (unregister) an event source from a log.
+      /// This does not delete entries.
+      /// </summary>
+      /// <param name="eventSourceName">Name of event source to delete</param>
+      /// <exception cref="EventSourceNotFoundException">Event source does not exist</exception>
       public void DeleteEventSource( string eventSourceName )
       {
-         throw new NotImplementedException();
+         // TODO: Handle exceptions thrown by delete
+         // http://msdn.microsoft.com/en-us/library/6k35xza3(v=vs.110).aspx
+         if( !DoesEventSourceExist( eventSourceName ) )
+         {
+            throw new EventSourceNotFoundException( string.Format( CultureInfo.CurrentCulture, EventLogExceptionString.EventSourceNotFoundException, eventSourceName ) );
+         }
+
+         EventLog.DeleteEventSource( eventSourceName );
       }
 
       /// <summary>
