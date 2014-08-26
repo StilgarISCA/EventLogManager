@@ -4,7 +4,6 @@ using EventLogManager.Command;
 using Telerik.JustMock;
 using Xunit;
 using Assert = Xunit.Assert;
-using EventLogManagerString = EventLogManager.ResponseString;
 
 namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
 {
@@ -30,7 +29,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          returnValue = _eventLogCommandLogic.ProcessCommand( emptyArgumentArray );
 
          // Assert
-         Assert.Equal( EventLogManagerString.UseageStatement, returnValue );
+         Assert.Equal( ResponseString.UseageStatement, returnValue );
       }
 
       [Fact]
@@ -40,7 +39,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          string returnValue = string.Empty;
          string badArgument = "commandThatDoesNotExist";
          string[] argumentArray = { badArgument };
-         string expectedOutput = string.Format( CultureInfo.CurrentCulture, EventLogManagerString.UnknownCommand, badArgument );
+         string expectedOutput = string.Format( CultureInfo.CurrentCulture, ResponseString.UnknownCommand, badArgument );
 
          // Act
          returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
@@ -56,7 +55,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          string returnValue = string.Empty;
          string[] argumentArray = { "commandThatDoesNotExist", "someOtherGarbageCommand" };
          string argumentString = string.Join( " ", argumentArray );
-         string expectedOutput = string.Format( CultureInfo.CurrentCulture, EventLogManagerString.UnknownCommand, argumentString );
+         string expectedOutput = string.Format( CultureInfo.CurrentCulture, ResponseString.UnknownCommand, argumentString );
 
          // Act
          returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
@@ -76,7 +75,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          returnValue = _eventLogCommandLogic.ProcessCommand( argumentArray );
 
          // Assert
-         Assert.Equal( EventLogManagerString.UseageStatement, returnValue );
+         Assert.Equal( ResponseString.UseageStatement, returnValue );
       }
 
       [Fact]

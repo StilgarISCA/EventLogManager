@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
 using EventLogManager.Command;
@@ -41,6 +42,15 @@ namespace EventLogManager
                   returnMessage = ProcessListCommand( args );
                   break;
                }
+            case "CREATELOG": // Create a new event log
+               {
+                  if( args.Length <= 2 )
+                  {
+                     return string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
+                  }
+                  throw new NotImplementedException();
+                  //break;
+               }
             case "CREATESOURCE": // Create a new event source in given event log
                {
                   returnMessage = ProcessCreateSourceCommand( args );
@@ -48,19 +58,7 @@ namespace EventLogManager
                }
             case "DELETESOURCE": // Delete an event source
                {
-                  if( args.Length <= 1 )
-                  {
-                     return string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
-                  }
-
-                  string eventSourceToDelete = args[1];
-                  if( !_eventLogCommand.DoesEventSourceExist( eventSourceToDelete ) )
-                  {
-                     return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDoesNotExist, eventSourceToDelete );
-                  }
-
-                  _eventLogCommand.DeleteEventSource( eventSourceToDelete );
-                  returnMessage = string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDeleted, eventSourceToDelete );
+                  returnMessage = ProcessDeleteSourceCommand( args );
                   break;
                }
             default: // Unknown argument(s)
@@ -73,6 +71,23 @@ namespace EventLogManager
          }
 
          return returnMessage;
+      }
+
+      private string ProcessDeleteSourceCommand( string[] args )
+      {
+         if( args.Length <= 1 )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
+         }
+
+         string eventSourceToDelete = args[1];
+         if( !_eventLogCommand.DoesEventSourceExist( eventSourceToDelete ) )
+         {
+            return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDoesNotExist, eventSourceToDelete );
+         }
+
+         _eventLogCommand.DeleteEventSource( eventSourceToDelete );
+         return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDeleted, eventSourceToDelete );
       }
 
       private string ProcessCreateSourceCommand( string[] args )

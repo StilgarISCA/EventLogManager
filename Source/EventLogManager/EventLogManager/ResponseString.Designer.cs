@@ -61,6 +61,15 @@ namespace EventLogManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Log {0} created with Event Source {1}..
+        /// </summary>
+        public static string EventLogCreated {
+            get {
+                return ResourceManager.GetString("EventLogCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event Log {0} does not exist..
         /// </summary>
         public static string EventLogDoesNotExist {
@@ -132,6 +141,7 @@ namespace EventLogManager {
         ///Commands:
         ///List - List existing event logs on computer
         ///List &quot;event log name&quot; - List event sources for event log
+        ///CreateLog &quot;NewEventLogName&quot; &quot;ExistingEventSource&quot; - Create new event log with given event source
         ///CreateSource &quot;NewEventSourceName&quot; &quot;TargetEventLog&quot; - Create new event source in event log
         ///DeleteSource &quot;EventSourceToDelete&quot; &quot;ContainingEventLog&quot; - Delete an event source in event log.
         /// </summary>

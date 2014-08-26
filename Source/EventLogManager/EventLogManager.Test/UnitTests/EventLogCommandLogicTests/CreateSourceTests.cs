@@ -1,8 +1,6 @@
 ﻿using EventLogManager.Command;
 using Telerik.JustMock;
 using Xunit;
-using Assert = Xunit.Assert;
-using EventLogManagerString = EventLogManager.ResponseString;
 
 namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
 {
@@ -23,7 +21,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          // Arrange
          string returnValue = string.Empty;
          string programCommand = "CreateSource";
-         string expectedValue = string.Format( EventLogManagerString.MissingArgument, programCommand );
+         string expectedValue = string.Format( ResponseString.MissingArgument, programCommand );
 
          // Act
          returnValue = _eventLogCommandLogic.ProcessCommand( new string[] { programCommand } );
@@ -38,7 +36,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          // Arrange
          string returnValue = string.Empty;
          string eventLogThatDoesNotExist = "EventLogThatDoesNotExist";
-         string expectedValue = string.Format( EventLogManagerString.EventLogDoesNotExist, eventLogThatDoesNotExist );
+         string expectedValue = string.Format( ResponseString.EventLogDoesNotExist, eventLogThatDoesNotExist );
          string[] argumentArray = { "CreateSource", "NewEventSourceName", eventLogThatDoesNotExist };
 
          Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( false );
@@ -73,7 +71,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          string returnValue = string.Empty;
          string validEventLogName = "validEventLog";
          string eventSourceThatAlreadyExists = "eventSourceThatAlreadyExists";
-         string expectedValue = string.Format( EventLogManagerString.EventSourceAlreadyExists, eventSourceThatAlreadyExists );
+         string expectedValue = string.Format( ResponseString.EventSourceAlreadyExists, eventSourceThatAlreadyExists );
          string[] argumentArray = { "CreateSource", eventSourceThatAlreadyExists, validEventLogName };
 
          Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );
@@ -112,7 +110,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          string returnValue = string.Empty;
          string eventSourceName = "SomeEventSourceName";
          string eventLogName = "SomeEventLogName";
-         string expectedResult = string.Format( EventLogManagerString.EventSourceCreated, eventSourceName, eventLogName );
+         string expectedResult = string.Format( ResponseString.EventSourceCreated, eventSourceName, eventLogName );
          string[] argumentArray = { "CreateSource", eventSourceName, eventLogName };
 
          Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( true );

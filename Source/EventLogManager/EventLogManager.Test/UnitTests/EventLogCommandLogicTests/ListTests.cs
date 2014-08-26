@@ -3,8 +3,6 @@ using EventLogManager.Command;
 using EventLogManager.Command.Exceptions;
 using Telerik.JustMock;
 using Xunit;
-using Assert = Xunit.Assert;
-using EventLogManagerString = EventLogManager.ResponseString;
 
 namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
 {
@@ -84,7 +82,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          // Arrange
          string returnValue = string.Empty;
          string eventLogThatDoesNotExist = "EventLogThatDoesNotExist";
-         string expectedValue = string.Format( EventLogManagerString.EventLogDoesNotExist, eventLogThatDoesNotExist );
+         string expectedValue = string.Format( ResponseString.EventLogDoesNotExist, eventLogThatDoesNotExist );
          string[] argumentArray = { "List", eventLogThatDoesNotExist };
 
          Mock.Arrange( () => _eventLogCommand.GetEventLogSources( Arg.AnyString ) ).Throws<EventLogNotFoundException>();
