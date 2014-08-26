@@ -5,6 +5,7 @@ namespace EventLogManager.Command
 {
    public interface IEventLogCommand
    {
+      void CreateEventLog( string eventLogName, string eventSourceName );
       void CreateEventSource( string newEventSourceName, string targetEventLogName );
       void DeleteEventSource( string eventSourceName );
       bool DoesEventLogExist( string eventLogName );

@@ -66,5 +66,26 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          // Assert
          Assert.Equal( expectedValue, returnValue );
       }
+
+      [Fact]
+      public void CreateLog_WithValidArguments_CallsCreateLogOnce()
+      {
+         // Arrange
+         string returnValue = string.Empty;
+         string someEventLogName = "SomeEventLogThatAlreadyExists";
+         string someEventSourceName = "SomeEventSourceName";
+         string[] argumentArray = { "CreateLog", someEventLogName, someEventSourceName };
+         string expectedValue = string.Format( ResponseString.EventLogCreated, someEventLogName, someEventSourceName );
+
+         Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( true );
+         Mock.Arrange( () => _eventLogCommand.DoesEventLogExist( Arg.AnyString ) ).Returns( false );
+         Mock.Arrange( () => _eventLogCommand.CreateEventLog( someEventLogName, someEventSourceName ) ).OccursOnce();
+
+         // Act
+         _eventLogCommandLogic.ProcessCommand( argumentArray );
+
+         // Assert
+         Mock.Assert( _eventLogCommand );
+      }
    }
 }

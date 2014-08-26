@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
 using EventLogManager.Command;
@@ -57,14 +56,14 @@ namespace EventLogManager
                      return string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogAlreadyExists, newEventLog );
                   }
 
-
                   if( !_eventLogCommand.DoesEventSourceExist( defaultEventSource ) )
                   {
                      return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDoesNotExist, defaultEventSource );
                   }
 
-                  throw new NotImplementedException();
-                  //break;
+                  _eventLogCommand.CreateEventLog( newEventLog, defaultEventSource );
+                  returnMessage = string.Empty; //string.Format( CultureInfo.CurrentCulture, ResponseString.  )
+                  break;
                }
             case "CREATESOURCE": // Create a new event source in given event log
                {
