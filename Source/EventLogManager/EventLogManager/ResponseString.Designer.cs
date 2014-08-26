@@ -61,6 +61,15 @@ namespace EventLogManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Log {0} already exists..
+        /// </summary>
+        public static string EventLogAlreadyExists {
+            get {
+                return ResourceManager.GetString("EventLogAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event Log {0} created with Event Source {1}..
         /// </summary>
         public static string EventLogCreated {

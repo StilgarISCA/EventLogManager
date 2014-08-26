@@ -48,6 +48,21 @@ namespace EventLogManager
                   {
                      return string.Format( CultureInfo.CurrentCulture, ResponseString.MissingArgument, args[0] );
                   }
+
+                  string newEventLog = args[1];
+                  string defaultEventSource = args[2];
+
+                  if( _eventLogCommand.DoesEventLogExist( newEventLog ) )
+                  {
+                     return string.Format( CultureInfo.CurrentCulture, ResponseString.EventLogAlreadyExists, newEventLog );
+                  }
+
+
+                  if( !_eventLogCommand.DoesEventSourceExist( defaultEventSource ) )
+                  {
+                     return string.Format( CultureInfo.CurrentCulture, ResponseString.EventSourceDoesNotExist, defaultEventSource );
+                  }
+
                   throw new NotImplementedException();
                   //break;
                }

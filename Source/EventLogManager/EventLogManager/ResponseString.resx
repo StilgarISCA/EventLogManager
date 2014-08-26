@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EventLogAlreadyExists" xml:space="preserve">
+    <value>Event Log {0} already exists.</value>
+  </data>
   <data name="EventLogCreated" xml:space="preserve">
     <value>Event Log {0} created with Event Source {1}.</value>
   </data>
