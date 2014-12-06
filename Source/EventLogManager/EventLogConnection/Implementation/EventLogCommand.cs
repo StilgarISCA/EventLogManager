@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -13,6 +14,16 @@ namespace EventLogManager.Command
    /// </summary>
    public class EventLogCommand : IEventLogCommand
    {
+      /// <summary>
+      /// Create a new event log with a given event source
+      /// </summary>
+      /// <param name="EventLogName">Name of log to add</param>
+      /// <param name="eventSourceName">Name of default source to assign</param>
+      public void CreateEventLog( string eventLogName, string eventSourceName )
+      {
+         throw new NotImplementedException();
+      }
+
       /// <summary>
       /// Create a new event source for given event log
       /// </summary>

@@ -18,6 +18,8 @@ Commands
 ===============
 **Help** &ndash; Display the help
 
+**CreateLog "NewEventLogName" "DefaultEventSourceName"** &ndash; Creates a new event log with an event source. Enclose event log / source names with spaces in double quotes.
+
 **CreateSource "NewEventSourceName" "TargetEventLogName"** &ndash; Creates a new event source in event log. Enclose event log / source names with spaces in double quotes.
 
 **DeleteSource "EventSourceNameToDelete"** &ndash; Deletes an event source. Enclose source names with spaces in double quotes.
@@ -28,6 +30,17 @@ Commands
 
 Examples
 ===============
+
+
+**CreateLog**
+
+*Example*
+
+    EventLogManager CreateLog "United Federation of Planets" "Warp Drive"
+
+*Output*
+
+    Event Log "United Federation of Planets" created with Event Source "Warp Drive".
 
 **CreateSource**
 

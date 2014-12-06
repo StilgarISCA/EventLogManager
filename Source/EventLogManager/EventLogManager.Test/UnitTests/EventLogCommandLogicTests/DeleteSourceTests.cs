@@ -1,8 +1,6 @@
 ﻿using EventLogManager.Command;
 using Telerik.JustMock;
 using Xunit;
-using Assert = Xunit.Assert;
-using EventLogManagerString = EventLogManager.ResponseString;
 
 namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
 {
@@ -23,7 +21,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          // Arrange
          string returnValue = string.Empty;
          string programCommand = "DeleteSource";
-         string expectedValue = string.Format( EventLogManagerString.MissingArgument, programCommand );
+         string expectedValue = string.Format( ResponseString.MissingArgument, programCommand );
 
          // Act
          returnValue = _eventLogCommandLogic.ProcessCommand( new string[] { programCommand } );
@@ -54,7 +52,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          // Arrange
          string returnValue = string.Empty;
          string eventSourceThatDoesNotExist = "someEventSourceThatDoesNotExist";
-         string expectedValue = string.Format( EventLogManagerString.EventSourceDoesNotExist, eventSourceThatDoesNotExist );
+         string expectedValue = string.Format( ResponseString.EventSourceDoesNotExist, eventSourceThatDoesNotExist );
          string[] argumentArray = { "DeleteSource", eventSourceThatDoesNotExist };
 
          Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( false );
@@ -91,7 +89,7 @@ namespace EventLogManager.Test.UnitTests.EventLogCommandLogicTests
          // Arrange
          string returnValue = string.Empty;
          string eventSourceName = "SomeEventSourceName";
-         string expectedResult = string.Format( EventLogManagerString.EventSourceDeleted, eventSourceName );
+         string expectedResult = string.Format( ResponseString.EventSourceDeleted, eventSourceName );
          string[] argumentArray = { "DeleteSource", eventSourceName };
 
          Mock.Arrange( () => _eventLogCommand.DoesEventSourceExist( Arg.AnyString ) ).Returns( true );
